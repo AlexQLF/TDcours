@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RockPaperScissorsTest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TD4_les_tests$RockPaperScissorsTest.exec</a> &gt; <a href="index.source.html" class="el_package">fr.p10.miage.rps.model</a> &gt; <span class="el_source">RockPaperScissorsTest.java</span></div><h1>RockPaperScissorsTest.java</h1><pre class="source lang-java linenums">package fr.p10.miage.rps.model;
+
+import org.testng.annotations.*;
+
+import static org.testng.Assert.*;
+
+<span class="fc" id="L7">public class RockPaperScissorsTest {</span>
+
+    RockPaperScissors rps;
+
+    @BeforeClass
+    public void setUp() {
+
+<span class="fc" id="L14">        rps = new RockPaperScissors();</span>
+
+<span class="fc" id="L16">    }</span>
+
+    @AfterClass
+    public void tearDown() {
+
+<span class="fc" id="L21">        rps = null;</span>
+
+<span class="fc" id="L23">    }</span>
+
+
+    @Parameters ({ &quot;paper&quot; ,&quot;rock&quot; })
+    @Test
+    public void testWinPlay (String p1 ,String p2 ){
+
+<span class="fc" id="L30">        assertEquals(rps.play(RPSEnum.valueOf(p1), RPSEnum.valueOf(p2)),Result.WIN);</span>
+
+<span class="fc" id="L32">    }</span>
+
+    @Parameters ({ &quot;paper&quot; ,&quot;paper&quot; })
+    @Test
+    public void testTiePlay (String p1 ,String p2 ){
+
+<span class="fc" id="L38">        assertEquals(rps.play(RPSEnum.valueOf(p1), RPSEnum.valueOf(p2)),Result.TIE);</span>
+
+<span class="fc" id="L40">    }</span>
+
+    @Parameters ({ &quot;paper&quot; ,&quot;scissors&quot; })
+    @Test
+    public void testLostPlay (String p1 ,String p2 ){
+
+<span class="fc" id="L46">        assertEquals(rps.play(RPSEnum.valueOf(p1), RPSEnum.valueOf(p2)),Result.LOST);</span>
+
+<span class="fc" id="L48">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RockPaperScissors.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TD4_les_tests$RockPaperScissorsTest.exec</a> &gt; <a href="index.source.html" class="el_package">fr.p10.miage.rps.model</a> &gt; <span class="el_source">RockPaperScissors.java</span></div><h1>RockPaperScissors.java</h1><pre class="source lang-java linenums">package fr.p10.miage.rps.model;
+
+<span class="fc" id="L3">public class RockPaperScissors {</span>
+
+    public Result play(RPSEnum p1, RPSEnum p2){
+
+<span class="fc bfc" id="L7" title="All 2 branches covered.">        if(p1.equals(p2)){</span>
+<span class="fc" id="L8">            return Result.TIE;</span>
+        }
+
+<span class="pc bpc" id="L11" title="3 of 4 branches missed.">        switch (p1){</span>
+
+            case ROCK:
+<span class="nc bnc" id="L14" title="All 2 branches missed.">                if(p2.equals(RPSEnum.PAPER)){</span>
+<span class="nc" id="L15">                    return Result.LOST;</span>
+                } else{
+<span class="nc" id="L17">                    return Result.WIN;</span>
+                }
+
+            case PAPER:
+<span class="fc bfc" id="L21" title="All 2 branches covered.">                if(p2.equals(RPSEnum.SCISSORS)){</span>
+<span class="fc" id="L22">                    return Result.LOST;</span>
+                } else{
+<span class="fc" id="L24">                    return Result.WIN;</span>
+                }
+
+            case SCISSORS:
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                if(p2.equals(RPSEnum.ROCK)){</span>
+<span class="nc" id="L29">                    return Result.LOST;</span>
+                } else{
+<span class="nc" id="L31">                    return Result.WIN;</span>
+                }
+
+<span class="nc" id="L34">            default: return null;</span>
+        }
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
