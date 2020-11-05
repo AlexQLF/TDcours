@@ -2,20 +2,23 @@ package fr.p10.miage.rps.model;
 
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 public class RockPaperScissorsTest {
 
     RockPaperScissors rps;
-    Player p1;
-    Player p2;
+    List<RPSEnum> listMouv1;
+    List<RPSEnum> listMouv2;
 
     @BeforeClass
     public void setUp() {
 
         rps = new RockPaperScissors();
-        p1 = new Player("Alex");
-        p2 = new Player("Nassim");
+        listMouv1 = List.of(RPSEnum.ROCK,RPSEnum.PAPER,RPSEnum.SCISSORS,RPSEnum.ROCK,RPSEnum.PAPER,RPSEnum.SCISSORS,RPSEnum.ROCK,RPSEnum.PAPER,RPSEnum.SCISSORS,RPSEnum.ROCK);
+        listMouv2 = List.of(RPSEnum.PAPER,RPSEnum.SCISSORS,RPSEnum.ROCK,RPSEnum.PAPER,RPSEnum.SCISSORS,RPSEnum.ROCK,RPSEnum.PAPER,RPSEnum.SCISSORS,RPSEnum.ROCK,RPSEnum.PAPER);
 
     }
 
@@ -23,9 +26,8 @@ public class RockPaperScissorsTest {
     public void tearDown() {
 
         rps = null;
-        p1 = null;
-        p2 = null;
-
+        listMouv1 = null;
+        listMouv2 = null;
     }
 
     @DataProvider(name="lostData")
@@ -73,6 +75,40 @@ public class RockPaperScissorsTest {
 
     }
 
+    @DataProvider(name="playerLostData")
+    public Object [][] createPlayerLostData() {
+
+        return new Object[][] {
+
+                {new Player("Alex",listMouv1), new Player("Nassim",listMouv2)},
+
+        } ;
+
+    }
+
+    @DataProvider(name="playerWinData")
+    public Object [][] createPlayerWinData() {
+
+        return new Object[][] {
+
+                {new Player("Alex",listMouv2), new Player("Nassim",listMouv1)},
+
+        } ;
+
+    }
+
+    @DataProvider(name="playerTieData")
+    public Object [][] createPlayerTieData() {
+
+        return new Object[][] {
+
+                {new Player("Alex",listMouv1), new Player("Nassim",listMouv1)},
+
+        } ;
+
+    }
+
+
     @Test ( dataProvider = "winData")
     public void testWinPlay (RPSEnum p1 ,RPSEnum p2 ){
 
@@ -94,25 +130,24 @@ public class RockPaperScissorsTest {
 
     }
 
-    @Test
+    @Test ( dataProvider = "playerWinData")
     public void testWinPlay2 (Player p1 ,Player p2 ){
 
         assertEquals(rps.play(p1, p2),Result.WIN);
 
     }
 
-    @Test
-    public void testTiePlay2 (Player p1 ,Player p2 ){
-
-        assertEquals(rps.play(p1, p2),Result.TIE);
-
-    }
-
-    @Test
+    @Test ( dataProvider = "playerLostData")
     public void testLostPlay2 (Player p1 ,Player p2 ){
 
         assertEquals(rps.play(p1, p2),Result.LOST);
 
     }
 
+    @Test ( dataProvider = "playerTieData")
+    public void testTiePlay2 (Player p1 ,Player p2 ){
+
+        assertEquals(rps.play(p1, p2),Result.TIE);
+
+    }
 }

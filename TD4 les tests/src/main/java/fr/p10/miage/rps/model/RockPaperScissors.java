@@ -1,5 +1,7 @@
 package fr.p10.miage.rps.model;
 
+import com.sun.source.tree.DoWhileLoopTree;
+
 public class RockPaperScissors {
 
     public Result play(RPSEnum p1, RPSEnum p2) {
@@ -39,7 +41,38 @@ public class RockPaperScissors {
 
     public Result play(Player p1, Player p2){
 
-        return Result.LOST;
+        Result res;
+
+        for(int i = 0; i<p1.getNbrMouv();i++) {
+
+            res = play(p1.getNextMove(),p2.getNextMove());
+
+            if(res == Result.TIE){
+
+                p1.setScore(p1.getScore()+1);
+                p2.setScore(p2.getScore()+1);
+
+            }else if(res == Result.WIN){
+
+                p1.setScore(p1.getScore()+1);
+
+            }else if(res == Result.LOST){
+
+                p2.setScore(p2.getScore()+1);
+
+            }
+
+            if(p1.getScore() > 5 && p2.getScore() < 5){
+                return Result.WIN;
+            }
+
+            if(p2.getScore() > 5 && p1.getScore() < 5){
+                return Result.LOST;
+            }
+
+        }
+
+        return Result.TIE;
 
     }
 
